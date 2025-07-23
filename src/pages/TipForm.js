@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./styles/TipForm.css";
+import '../styles/TipForm.css';
 
 export default function TipForm() {
   const presetOptions = [1, 5, 10, 20];
