@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 
 export default function Success() {
   return (
-    <div className="container">
-      <h2>Thank you for your tip!</h2>
-      <p>Your payment was successful.</p>
+    <div style={{ padding: "2rem" }}>
+      <h1>🎉 Tip Sent Successfully!</h1>
+      <p>Thank you for your generosity — your tip was received.</p>
     </div>
   );
 }
