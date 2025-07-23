@@ -47,9 +47,6 @@ export default function TipForm() {
 
   return (
     <div className="tip-container">
-      {/* 🔰 Logo */}
-      <img src="/logo.png" alt="Tap-to-Tip Logo" className="logo" />
-      
       {/* 🔠 Title */}
       <h1 className="title">Choose a Tip Amount</h1>
 
@@ -84,10 +81,9 @@ export default function TipForm() {
 
       {error && <p className="tip-error">{error}</p>}
 
-      {/* 🔐 Trust Badge */}
+      {/* 🔐 Trust Badge Image */}
       <div className="trust-badge">
-        <img src="/secure.svg" alt="Secured by Stripe" />
-        <span>Secured by Stripe</span>
+        <img src="/IMG_0373.jpeg" alt="Secured by Stripe" />
       </div>
     </div>
   );
