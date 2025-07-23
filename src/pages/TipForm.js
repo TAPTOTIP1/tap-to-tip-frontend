@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../styles/TipForm.css";
+import confetti from "canvas-confetti";
 
 export default function TipForm() {
   const presetOptions = [1, 5, 10, 20];
@@ -20,7 +21,10 @@ export default function TipForm() {
 
       const data = await res.json();
       if (data.url) {
-        window.location.href = data.url;
+        confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+        setTimeout(() => {
+          window.location.href = data.url;
+        }, 400);
       } else {
         throw new Error(data.error || "Failed to create checkout session.");
       }
@@ -46,45 +50,52 @@ export default function TipForm() {
   };
 
   return (
-    <div className="tip-container">
-      {/* 🔠 Title */}
-      <h1 className="title">Choose a Tip Amount (USD)</h1>
+    <>
+      {/* 🔳 Background Video */}
+      <video autoPlay loop muted playsInline className="background-video">
+        <source src="/workers.mp4" type="video/mp4" />
+      </video>
 
-      <form onSubmit={handleSubmit}>
-        <div className="preset-options">
-          {presetOptions.map((value) => (
-            <button
-              key={value}
-              type="button"
-              className="preset-button"
-              onClick={() => handlePresetClick(value)}
-              disabled={loading}
-            >
-              ${value}
-            </button>
-          ))}
+      <div className="tip-container">
+        {/* 🔠 Title */}
+        <h1 className="title">Choose a Tip Amount (USD)</h1>
+
+        <form onSubmit={handleSubmit}>
+          <div className="preset-options">
+            {presetOptions.map((value) => (
+              <button
+                key={value}
+                type="button"
+                className="preset-button"
+                onClick={() => handlePresetClick(value)}
+                disabled={loading}
+              >
+                ${value}
+              </button>
+            ))}
+          </div>
+
+          <input
+            type="number"
+            placeholder="Enter custom amount"
+            value={customAmount}
+            onChange={(e) => setCustomAmount(e.target.value)}
+            className="tip-input"
+            disabled={loading}
+          />
+
+          <button type="submit" disabled={loading} className="tip-button">
+            {loading ? "Processing..." : "💸 Send Tip"}
+          </button>
+        </form>
+
+        {error && <p className="tip-error">{error}</p>}
+
+        {/* 🏦 Trust Badge Image */}
+        <div className="trust-badge">
+          <img src="/IMG_0373.jpeg" alt="Secured by Stripe" />
         </div>
-
-        <input
-          type="number"
-          placeholder="Enter custom amount"
-          value={customAmount}
-          onChange={(e) => setCustomAmount(e.target.value)}
-          className="tip-input"
-          disabled={loading}
-        />
-
-        <button type="submit" disabled={loading} className="tip-button">
-          {loading ? "Processing..." : "💸 Send Tip"}
-        </button>
-      </form>
-
-      {error && <p className="tip-error">{error}</p>}
-
-      {/* 🔐 Trust Badge Image */}
-      <div className="trust-badge">
-        <img src="/IMG_0373.jpeg" alt="Secured by Stripe" />
       </div>
-    </div>
+    </>
   );
 }
