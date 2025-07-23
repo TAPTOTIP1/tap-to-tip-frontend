@@ -1,9 +1,9 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import Return from "./pages/Return";
-import Success from "./pages/Success";
-import Cancel from "./pages/Cancel";
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import Return from './pages/Return';
+import Success from './pages/Success';
+import Cancel from './pages/Cancel';
 
 export default function App() {
   return (
