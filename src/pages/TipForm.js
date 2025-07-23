@@ -47,8 +47,10 @@ export default function TipForm() {
 
   return (
     <div className="tip-container">
-      {/* 🔰 Logo and Header */}
+      {/* 🔰 Logo */}
       <img src="/logo.png" alt="Tap-to-Tip Logo" className="logo" />
+      
+      {/* 🔠 Title */}
       <h1 className="title">Choose a Tip Amount</h1>
 
       <form onSubmit={handleSubmit}>
