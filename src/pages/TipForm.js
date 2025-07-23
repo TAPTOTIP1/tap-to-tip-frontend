@@ -10,6 +10,7 @@ export default function TipForm() {
   const createCheckout = async (amount) => {
     setLoading(true);
     setError("");
+
     try {
       const res = await fetch("https://tap-to-tip-backend-production.up.railway.app/create-checkout-session", {
         method: "POST",
@@ -31,7 +32,7 @@ export default function TipForm() {
   };
 
   const handlePresetClick = (value) => {
-    createCheckout(value);
+    if (!loading) createCheckout(value);
   };
 
   const handleSubmit = async (e) => {
@@ -46,7 +47,10 @@ export default function TipForm() {
 
   return (
     <div className="tip-container">
+      {/* 🔰 Logo and Header */}
+      <img src="/logo.png" alt="Tap-to-Tip Logo" className="logo" />
       <h1 className="title">Choose a Tip Amount</h1>
+
       <form onSubmit={handleSubmit}>
         <div className="preset-options">
           {presetOptions.map((value) => (
@@ -64,7 +68,7 @@ export default function TipForm() {
 
         <input
           type="number"
-          placeholder="Custom amount"
+          placeholder="Enter custom amount"
           value={customAmount}
           onChange={(e) => setCustomAmount(e.target.value)}
           className="tip-input"
@@ -72,10 +76,17 @@ export default function TipForm() {
         />
 
         <button type="submit" disabled={loading} className="tip-button">
-          {loading ? "Processing..." : "Send Tip"}
+          {loading ? "Processing..." : "💸 Send Tip"}
         </button>
       </form>
+
       {error && <p className="tip-error">{error}</p>}
+
+      {/* 🔐 Trust Badge */}
+      <div className="trust-badge">
+        <img src="/secure.svg" alt="Secured by Stripe" />
+        <span>Secured by Stripe</span>
+      </div>
     </div>
   );
 }
