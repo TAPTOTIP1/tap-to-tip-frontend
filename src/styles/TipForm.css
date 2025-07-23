@@ -1,82 +1,87 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f9f9f9;
+}
+
 .tip-container {
-  padding: 2rem;
   max-width: 400px;
-  margin: 60px auto;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   text-align: center;
-  font-family: "Inter", sans-serif;
-  background-color: #fefefe;
-  border-radius: 12px;
-  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.08);
 }
 
 .title {
   font-size: 1.8rem;
+  font-weight: 600;
   margin-bottom: 1.5rem;
-  color: #222;
 }
 
 .preset-options {
   display: flex;
+  justify-content: space-between;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px;
-  margin-bottom: 20px;
+  gap: 10px;
+  margin-bottom: 1rem;
 }
 
 .preset-button {
-  padding: 12px 24px;
+  flex: 1;
+  min-width: 80px;
+  padding: 12px;
   font-size: 1rem;
-  border: 2px solid #0d6efd;
-  border-radius: 8px;
-  background-color: white;
-  color: #0d6efd;
+  font-weight: 500;
+  background-color: #eaeaea;
+  border: none;
+  border-radius: 10px;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.2s ease-in-out;
 }
 
 .preset-button:hover {
-  background-color: #e6f0ff;
+  background-color: #d0d0d0;
 }
 
 .preset-button.selected {
-  background-color: #0d6efd;
+  background-color: #007bff;
   color: white;
-}
-
-.or {
-  margin: 12px 0;
-  font-weight: 500;
-  color: #555;
 }
 
 .tip-input {
+  width: 100%;
   padding: 12px;
   font-size: 1rem;
-  width: 100%;
-  max-width: 250px;
   border: 1px solid #ccc;
-  border-radius: 8px;
-  outline: none;
-  margin-bottom: 16px;
+  border-radius: 10px;
+  margin-bottom: 1rem;
 }
 
 .tip-button {
-  padding: 12px 24px;
-  font-size: 1rem;
-  background-color: #0d6efd;
+  background-color: #007bff;
   color: white;
+  font-size: 1rem;
+  padding: 12px;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
-  transition: background 0.2s;
+  width: 100%;
+  transition: background-color 0.2s ease-in-out;
 }
 
 .tip-button:hover {
-  background-color: #0a58ca;
+  background-color: #0056b3;
 }
 
 .tip-error {
   color: red;
   margin-top: 1rem;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
+}
+
+.trust-badge {
+  font-size: 0.8rem;
+  color: #888;
+  margin-top: 1rem;
 }
