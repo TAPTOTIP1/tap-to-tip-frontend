@@ -1,40 +1,20 @@
 import React, { useState } from "react";
-import '../styles/TipForm.css';
+import "../styles/TipForm.css";
 
 export default function TipForm() {
   const presetOptions = [1, 5, 10, 20];
-  const [selectedPreset, setSelectedPreset] = useState(null);
   const [customAmount, setCustomAmount] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const handlePresetClick = (value) => {
-    setSelectedPreset(value);
-    setCustomAmount("");
-  };
-
-  const handleCustomChange = (e) => {
-    setCustomAmount(e.target.value);
-    setSelectedPreset(null);
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const createCheckout = async (amount) => {
     setLoading(true);
     setError("");
-
-    const finalAmount = selectedPreset || parseFloat(customAmount);
-    if (!finalAmount || isNaN(finalAmount) || finalAmount <= 0) {
-      setError("Please enter or select a valid amount.");
-      setLoading(false);
-      return;
-    }
-
     try {
       const res = await fetch("https://tap-to-tip-backend-production.up.railway.app/create-checkout-session", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ amount: finalAmount * 100 }), // convert to cents
+        body: JSON.stringify({ amount: amount * 100 }), // convert to cents
       });
 
       const data = await res.json();
@@ -46,9 +26,22 @@ export default function TipForm() {
     } catch (err) {
       console.error(err.message);
       setError("Something went wrong. Try again.");
+      setLoading(false);
     }
+  };
 
-    setLoading(false);
+  const handlePresetClick = (value) => {
+    createCheckout(value);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const finalAmount = parseFloat(customAmount);
+    if (!finalAmount || isNaN(finalAmount) || finalAmount <= 0) {
+      setError("Please enter a valid amount.");
+      return;
+    }
+    createCheckout(finalAmount);
   };
 
   return (
@@ -60,21 +53,24 @@ export default function TipForm() {
             <button
               key={value}
               type="button"
-              className={`preset-button ${selectedPreset === value ? "selected" : ""}`}
+              className="preset-button"
               onClick={() => handlePresetClick(value)}
+              disabled={loading}
             >
               ${value}
             </button>
           ))}
         </div>
-        <p className="or">or enter custom amount</p>
+
         <input
           type="number"
           placeholder="Custom amount"
           value={customAmount}
-          onChange={handleCustomChange}
+          onChange={(e) => setCustomAmount(e.target.value)}
           className="tip-input"
+          disabled={loading}
         />
+
         <button type="submit" disabled={loading} className="tip-button">
           {loading ? "Processing..." : "Send Tip"}
         </button>
