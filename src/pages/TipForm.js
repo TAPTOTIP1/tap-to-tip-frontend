@@ -85,7 +85,7 @@ export default function TipForm() {
           />
 
           <button type="submit" disabled={loading} className="tip-button">
-            {loading ? "Processing..." : " Send Tip"}
+            {loading ? "Processing..." : "Send Tip"}
           </button>
         </form>
 
