@@ -1,30 +1,10 @@
-import React from "react";
-import { useParams } from "react-router-dom";
+import React from 'react';
 
 export default function Return() {
-  const { connectedAccountId } = useParams();
-
   return (
-    <div className="container">
-      <div className="banner">
-        <h2>Rocket Rides</h2>
-      </div>
-      <div className="content">
-        <h2>Details submitted</h2>
-        <p>That's everything we need for now</p>
-      </div>
-      <div className="info-callout">
-        <p>
-          This is a sample app for Stripe-hosted Connect onboarding.{" "}
-          <a
-            href="https://docs.stripe.com/connect/onboarding/quickstart?connect-onboarding-surface=hosted"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            View docs
-          </a>
-        </p>
-      </div>
+    <div style={{ padding: "2rem" }}>
+      <h1>Return Page</h1>
+      <p>If someone navigates back from the checkout, they’ll land here. You can add a message or redirect logic later.</p>
     </div>
   );
 }
