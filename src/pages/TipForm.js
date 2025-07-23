@@ -48,7 +48,7 @@ export default function TipForm() {
   return (
     <div className="tip-container">
       {/* 🔠 Title */}
-      <h1 className="title">Choose a Tip Amount</h1>
+      <h1 className="title">Choose a Tip Amount (USD)</h1>
 
       <form onSubmit={handleSubmit}>
         <div className="preset-options">
